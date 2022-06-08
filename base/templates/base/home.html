@@ -8,7 +8,8 @@
     <div>
         {% for room in rooms %}
             <div>
-                <h5>{{room.id}} -- <a href="/room/{{room.id}}">{{room.name}}</a></h5>
+                <!--using {% url 'room' room.id %} uses 'name' of the path and inserts room.id-->
+                <h5>{{room.id}} -- <a href="{% url 'room' room.id %}">{{room.name}}</a></h5>
             </div>
         {% endfor %}
     </div>
