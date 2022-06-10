@@ -1,4 +1,5 @@
 from multiprocessing import context
+from urllib import request
 from django.shortcuts import render, redirect
 from .models import Room
 from .forms import RoomForm
@@ -40,7 +41,14 @@ def updateRoom(request, pk):
         if form.is_valid():
             form.save()
             return redirect('home')
-            
+
     context = {'form': form}
     return render(request, 'base/room_form.html', context)
+
+def deleteRoom(request, pk):
+    room = Room.objects.get(id=pk)
+    if request.method == 'POST':
+        room.delete()
+
+    return render(request, 'base/delete.html', {'obj': room})
 
