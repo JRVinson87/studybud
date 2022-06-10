@@ -16,6 +16,9 @@ class Room(models.Model):
     updated = models.DateTimeField(auto_now=True) #timestamp every time
     created = models.DateTimeField(auto_now_add=True) #timestamp when created
 
+    class Meta:
+        ordering = ['-updated', '-created'] #hyphen inverts to descending order
+
     def __str__(self):
         return self.name
 
